@@ -1,9 +1,16 @@
-
-type Tile = {
-  type: 'floor';
+interface FloorObject {
+  name: string;
+  group: 'ally' | 'enemy' | 'neutral';
+  blockPass: boolean;
+  keyReference: string;
 }
 
-type GameMap = {
+interface Tile {
+  type: 'floor';
+  objectIn?: FloorObject;
+}
+
+interface GameMap {
   name: string;
   tiles: Tile[][];
 }
