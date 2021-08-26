@@ -1,7 +1,12 @@
 import { cloneDeep } from 'lodash';
 
 const addObjectToMap = (map: GameMap, object: FloorObject, posX: number, posY: number): GameMap => {
-  const newMap = cloneDeep(map),
+  const newMap = {
+    ...cloneDeep(map),
+    tiles: [
+      ...map.tiles.map((col) => [...col.map((line) => cloneDeep(line))])
+    ]
+  }, // Deep clone, but it is really deep
     newObject = cloneDeep(object);
   
   if (
@@ -11,10 +16,7 @@ const addObjectToMap = (map: GameMap, object: FloorObject, posX: number, posY: n
     throw new Error('Position does´t exist');
   }
   
-  if (
-    newMap.tiles[posX][posY].objectIn !== null
-    && newMap.tiles[posX][posY].objectIn !== undefined
-  ) {
+  if (newMap.tiles[posX][posY].objectIn !== undefined) {
     throw new Error('Position is not empty');
   }
 

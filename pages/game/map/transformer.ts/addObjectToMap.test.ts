@@ -1,12 +1,13 @@
-import { expect, fail } from 'chai';
-import addObjectToMap from './addObjectToMap';
+import { expect } from 'chai';
 import basicMap from '../basicMap';
+import addObjectToMap from './addObjectToMap';
 
 it('addObjectToMap should be a function', () => {
   expect(addObjectToMap).to.be.a('function')
 })
 
 it('addObjectToMap empty map receive a object at position 2/1', () => {
+  const emptyFloor = { type: 'floor', objectIn: undefined }
   expect(
     addObjectToMap(
       basicMap,
@@ -15,12 +16,12 @@ it('addObjectToMap empty map receive a object at position 2/1', () => {
   ).to.deep.equal({
     name: 'map',
     tiles: [
-      [{ type: 'floor' }, { type: 'floor' }, { type: 'floor' }],
-      [{ type: 'floor' }, { type: 'floor' }, { type: 'floor' }],
+      [emptyFloor, emptyFloor, emptyFloor],
+      [emptyFloor, emptyFloor, emptyFloor],
       [
-        { type: 'floor' },
+        emptyFloor,
         { type: 'floor', objectIn: { name: 'Player', group: 'ally', blockPass: true, keyReference: '1' } },
-        { type: 'floor'},
+        emptyFloor,
       ]
     ]
   })

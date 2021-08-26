@@ -1,21 +1,11 @@
+const emptyFloor: Tile = { type: 'floor', objectIn: undefined }
+
 const map: GameMap = {
   name: 'map',
   tiles: [
-    [
-      { type: 'floor' },
-      { type: 'floor' },
-      { type: 'floor' },
-    ],
-    [
-      { type: 'floor' },
-      { type: 'floor' },
-      { type: 'floor' },
-    ],
-    [
-      { type: 'floor' },
-      { type: 'floor' },
-      { type: 'floor' },
-    ]
+    [emptyFloor, emptyFloor, emptyFloor],
+    [emptyFloor, emptyFloor, emptyFloor],
+    [emptyFloor, emptyFloor, emptyFloor],
   ]
 }
 
