@@ -6,11 +6,19 @@ interface FloorObject {
 }
 
 interface Tile {
-  type: 'floor';
+  type: 'floor' | 'wall';
   objectIn?: FloorObject;
+}
+
+interface TileClickEvent extends Tile {
+  clickEvent?: () => void | GameMap;
 }
 
 interface GameMap {
   name: string;
   tiles: Tile[][];
+}
+
+interface GameMapClickEvent extends GameMap {
+  tiles: TileClickEvent[][];
 }

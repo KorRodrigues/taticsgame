@@ -1,12 +1,9 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from "lodash";
+import deepCloneMap from "./deepCloneMap";
+
 
 const addObjectToMap = (map: GameMap, object: FloorObject, posX: number, posY: number): GameMap => {
-  const newMap = {
-    ...cloneDeep(map),
-    tiles: [
-      ...map.tiles.map((col) => [...col.map((line) => cloneDeep(line))])
-    ]
-  }, // Deep clone, but it is really deep
+  const newMap = deepCloneMap(map),
     newObject = cloneDeep(object);
   
   if (

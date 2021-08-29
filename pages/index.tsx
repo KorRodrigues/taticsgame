@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 import gameMap from './game/map/basicMap'
 import styles from '../styles/Home.module.css'
 import Tile from './game/component/Tile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import addObjectToMap from './game/map/transformer.ts/addObjectToMap';
-import MoveObjectThroughMap from './game/map/transformer.ts/MoveObjectThroughMap';
+import MoveObjectThroughMap from './game/map/transformer.ts/moveObjectThroughMap';
 
 const Home: NextPage = () => {
   const [map, setMap] = useState<GameMap>(gameMap)
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         // TODO error to move object
       } else {
         // Set the selected object to move in next click
-        setSelectedObjectPosition([posX, posY])
+        // setSelectedObjectPosition([posX, posY])
       }
     // else (if the tile is empty)
     } else {
@@ -36,22 +36,38 @@ const Home: NextPage = () => {
         setSelectedObjectPosition([]) 
       // else (add an object to the tile)
       } else {
-        setMap(addObjectToMap(
-          map,
-          { name: 'Player ' + key, group: 'ally', blockPass: true, keyReference: key+'' }
-          , posX, posY)
-        )
-        setKey(1 + key)
+        // setMap(addObjectToMap(
+        //   map,
+        //   { name: 'Player ' + key, group: 'ally', blockPass: true, keyReference: key+'' }
+        //   , posX, posY)
+        // )
+        // setKey(1 + key)
       }
     }
   }
+  
+  useEffect(() => {
+    setMap(addObjectToMap(
+      map,
+      {
+        name: 'Player ' + key,
+        group: 'ally',
+        blockPass: true,
+        keyReference: key+'',
+        movement: 1,
+      }
+      , 1, 1)
+    )
+    setKey(1 + key)
+    setSelectedObjectPosition([1, 1])
+  }, []);
 
   const { name, tiles } = map;
 
   return (
     <div className={styles.container}>
       <h1>{name}</h1>
-      <div>
+      <div style={{display: "flex"}}>
         {tiles.map((column, i) => (
           <div key={i}>
             {column.map((line, j) => (

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import basicMap from '../basicMap';
+import basicMap, { emptyFloor } from '../basicMap';
 import addObjectToMap from './addObjectToMap';
 
 it('addObjectToMap should be a function', () => {
@@ -7,7 +7,6 @@ it('addObjectToMap should be a function', () => {
 })
 
 it('addObjectToMap empty map receive a object at position 2/1', () => {
-  const emptyFloor = { type: 'floor', objectIn: undefined }
   expect(
     addObjectToMap(
       basicMap,

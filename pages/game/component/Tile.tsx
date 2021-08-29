@@ -7,13 +7,13 @@ interface TileProps {
 }
 
 const Tile = ({ onClick, tile, children }: TileProps) => (
-  <span
-    style={{ width: 50, height: 50, border: '1px solid #00000030', display: 'inline-block' }}
+  <div
+    style={{ width: 100, height: 100, border: '1px solid #00000030' }}
     onClick={onClick}
   >
     {tile.type}
     <p>{children}</p>
-  </span>
+  </div>
 )
 
 export default Tile;

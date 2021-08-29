@@ -1,18 +1,13 @@
-import { cloneDeep } from 'lodash';
+import deepCloneMap from "./deepCloneMap";
 
-const MoveObjectThroughMap = (
+const moveObjectThroughMap = (
   map: GameMap,
   posX: number,
   posY: number,
   newPosX: number,
   newPosY: number,
 ): GameMap => {
-  const newMap = {
-    ...cloneDeep(map),
-    tiles: [
-      ...map.tiles.map((col) => [...col.map((line) => cloneDeep(line))])
-    ]
-  } // Deep clone, but it is really deep
+  const newMap = deepCloneMap(map);
   
   if (
     newMap.tiles[posX] === undefined
@@ -43,4 +38,4 @@ const MoveObjectThroughMap = (
   return newMap;
 }
 
-export default MoveObjectThroughMap;
+export default moveObjectThroughMap;

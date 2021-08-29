@@ -1,12 +1,12 @@
-const emptyFloor: Tile = { type: 'floor', objectIn: undefined }
+export const emptyFloor: Tile = { type: 'floor', objectIn: undefined }
 
 const map: GameMap = {
   name: 'map',
-  tiles: [
-    [emptyFloor, emptyFloor, emptyFloor],
-    [emptyFloor, emptyFloor, emptyFloor],
-    [emptyFloor, emptyFloor, emptyFloor],
-  ]
+  tiles: ((new Array(3)).fill(
+    ((new Array(3)).fill(
+      ({...emptyFloor})
+    ))
+  )),
 }
 
 export default map;
